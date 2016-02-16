@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Controller.Classes
+namespace Uwindsor_Formula_Hybrid.Source.Testing
 {
-    class Microcontroller
+    class Testing
     {
     }
 }
