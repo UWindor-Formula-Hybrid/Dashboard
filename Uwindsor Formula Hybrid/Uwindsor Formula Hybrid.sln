@@ -5,6 +5,8 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Uwindsor Formula Hybrid", "Uwindsor Formula Hybrid\Uwindsor Formula Hybrid.csproj", "{41D62700-3603-4CC3-A0F2-30DD5CA40441}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App1", "App1\App1.csproj", "{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|ARM = Debug|ARM
@@ -45,6 +47,33 @@ Global
 		{41D62700-3603-4CC3-A0F2-30DD5CA40441}.Testing|x86.ActiveCfg = Testing|x86
 		{41D62700-3603-4CC3-A0F2-30DD5CA40441}.Testing|x86.Build.0 = Testing|x86
 		{41D62700-3603-4CC3-A0F2-30DD5CA40441}.Testing|x86.Deploy.0 = Testing|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|ARM.ActiveCfg = Debug|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|ARM.Build.0 = Debug|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|ARM.Deploy.0 = Debug|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|x64.ActiveCfg = Debug|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|x64.Build.0 = Debug|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|x64.Deploy.0 = Debug|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|x86.ActiveCfg = Debug|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|x86.Build.0 = Debug|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Debug|x86.Deploy.0 = Debug|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|ARM.ActiveCfg = Release|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|ARM.Build.0 = Release|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|ARM.Deploy.0 = Release|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|x64.ActiveCfg = Release|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|x64.Build.0 = Release|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|x64.Deploy.0 = Release|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|x86.ActiveCfg = Release|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|x86.Build.0 = Release|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Release|x86.Deploy.0 = Release|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|ARM.ActiveCfg = Release|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|ARM.Build.0 = Release|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|ARM.Deploy.0 = Release|ARM
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|x64.ActiveCfg = Release|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|x64.Build.0 = Release|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|x64.Deploy.0 = Release|x64
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|x86.ActiveCfg = Release|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|x86.Build.0 = Release|x86
+		{FF7C72FA-BC16-43C7-8E55-62E0735F14F8}.Testing|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

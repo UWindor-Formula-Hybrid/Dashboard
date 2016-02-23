@@ -14,7 +14,7 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
 #if DEBUG
             input = new Testing.TestingInputs();
 #else
-            input = new RealControls();
+       //     input = new RealControls();
 #endif
 
         }

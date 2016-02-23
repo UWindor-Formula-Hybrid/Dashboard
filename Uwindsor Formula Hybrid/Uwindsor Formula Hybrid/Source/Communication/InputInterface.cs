@@ -20,10 +20,16 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
         void InitSerialCom(int bitRate);
 
         /// <summary>
-        /// This variable is used to signal an application wide shutdown. <br/>
-        /// It allows the threads to shudown gracefully.
+        /// This method is used to signal an application wide shutdown. <br/>
+        /// It allows the thread to shudown gracefully.
         /// </summary>
-        bool isShuttingDown;
+        void Shutdown();
+
+        /// <summary>
+        /// Returns the raw data from the speed sensor.
+        /// </summary>
+        /// <returns>The raw input, a value from 0 - 255</returns>
+        int getSpeedSensor();
         
         
 

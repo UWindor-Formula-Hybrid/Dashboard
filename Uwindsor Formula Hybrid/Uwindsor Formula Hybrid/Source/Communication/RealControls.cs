@@ -51,6 +51,15 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
         {
             throw new NotImplementedException();
         }
-        
+
+        public void Shutdown()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int getSpeedSensor()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
