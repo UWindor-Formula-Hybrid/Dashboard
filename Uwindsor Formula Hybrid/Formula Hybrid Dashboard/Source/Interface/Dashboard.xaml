@@ -116,7 +116,7 @@
                                         <CompositeTransform Rotation="150"/>
                                     </Ellipse.RenderTransform>
                                 </Ellipse>
-                                <Ellipse x:Name="Speed" Fill="#00F4F4F5" HorizontalAlignment="Left" Height="600" VerticalAlignment="Bottom" Width="600" StrokeThickness="50" RequestedTheme="Dark" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" StrokeDashArray="17.299999 100" Stroke="#FF0078D7">
+                                <Ellipse x:Name="Speed" Fill="#00F4F4F5" HorizontalAlignment="Left" Height="600" VerticalAlignment="Bottom" Width="600" StrokeThickness="50" RequestedTheme="Dark" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto" StrokeDashArray="22.9 100" Stroke="#FF0078D7">
                                     <Ellipse.RenderTransform>
                                         <CompositeTransform Rotation="150"/>
                                     </Ellipse.RenderTransform>
@@ -127,12 +127,12 @@
 
                     </Grid>
                 </Viewbox>
-                <Hub Header="" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="600" Height="200" BorderBrush="Black" Background="#FF212121" RequestedTheme="Dark">
-                    <HubSection Header="Throttle" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="600">
+                <Hub x:Name="InfoHub" Header="" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="600" Height="200" BorderBrush="Black" Background="#FF212121" RequestedTheme="Dark">
+                    <HubSection x:Name="InfoCenter" Header="Throttle" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" MinWidth="600">
                         <DataTemplate>
                             <Grid>
-                                <ProgressBar x:Name="Mthrottle" Height="50" Margin="0,15,0,0" VerticalAlignment="Top" RequestedTheme="Dark" Value="60" RenderTransformOrigin="0.5,0.5"/>
-                                <ProgressBar x:Name="Ethrottle" Height="50" Margin="0,0,0,15" VerticalAlignment="Bottom" RequestedTheme="Dark" ToolTipService.ToolTip="Motor Throttle" Value="10" RenderTransformOrigin="0.5,0.5"/>
+                                <ProgressBar x:Name="Ethrottle" Height="50" Margin="0,15,0,0" VerticalAlignment="Top" RequestedTheme="Dark" Value="60" RenderTransformOrigin="0.5,0.5"/>
+                                <ProgressBar x:Name="Mthrottle" Height="50" Margin="0,0,0,15" VerticalAlignment="Bottom" RequestedTheme="Dark" ToolTipService.ToolTip="Motor Throttle" Value="10" RenderTransformOrigin="0.5,0.5"/>
                                 <TextBlock x:Name="textBlock" HorizontalAlignment="Left" Margin="10,18,0,77" TextWrapping="Wrap" Text="Engine Throttle" VerticalAlignment="Center" Height="47" Width="556" TextAlignment="Center" FontSize="29.333"/>
                                 <TextBlock x:Name="textBlock_Copy" HorizontalAlignment="Left" Margin="10,80,0,15" TextWrapping="Wrap" Text="Motor Throttle" VerticalAlignment="Center" Height="47" Width="556" TextAlignment="Center" FontSize="29.333"/>
                             </Grid>

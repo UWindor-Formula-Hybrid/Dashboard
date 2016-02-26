@@ -11,22 +11,11 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
     {        
 
 #if DEBUG
-        private static InputInterface input = new TestingControls();
+        public static InputInterface DefaultControls = new TestingControls();
         public static bool isTesting = true;
 #else
-        private static InputInterface input = new RealControls();
+        public static InputInterface DefaultControls = new RealControls();
         public static bool isTesting = false;
 #endif
-
-
-        /// <summary>
-        /// This returns the currently used interface to the class asking.
-        /// </summary>
-        /// <returns>The Default Communication Interface</returns>
-        static InputInterface getInputInterface()
-        {
-            return input;
-        }
-        
     }
 }
