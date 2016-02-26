@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Uwindsor_Formula_Hybrid.Source.Communication
@@ -11,25 +12,25 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
     /// <seealso cref="App.xaml.cs"></summary>
     interface InputInterface
     {
-        /// <summary>This method sets the motor output value, this will then get output to the motor.</summary>
-        /// <param name="value">The value sent to the motor, an integer from 0 - 255</param>
-        void SetMotorOuput(float value);
+        //Pretty much all communication is locked and is just a variable, updated by the interface
+        float ThrottlePos { get; set; } // a Value from 0 - 100
+        float CurrentSpeed { get; set; }  // in KPH
+        float FuelLeft { get; set; }  // a Value from 0 - 100
+        float BatteryLeft { get; set; }  // a Value from 0 - 100
+        int EngineRPM { get; }
 
-        /// <summary>This method initializes serial communication with the ECU.</summary>
-        /// <param name="bitRate"> The bitrate used when talking to the ECU, an integer value.</param>
-        void InitSerialCom(int bitRate);
+        /// <summary>
+        /// Begin all theading and stores the mutex for use by any private methods
+        /// </summary>
+        /// <param name="mutex">Used for communication between threads and allows any thread to use communication without worrying about being threadsafe</param>
+        void Initialize();
+
 
         /// <summary>
         /// This method is used to signal an application wide shutdown. <br/>
         /// It allows the thread to shudown gracefully.
         /// </summary>
         void Shutdown();
-
-        /// <summary>
-        /// Returns the raw data from the speed sensor.
-        /// </summary>
-        /// <returns>The raw input, a value from 0 - 255</returns>
-        int getSpeedSensor();
         
         
 

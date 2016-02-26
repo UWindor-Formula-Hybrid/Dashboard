@@ -5,9 +5,12 @@
     xmlns:local="using:Uwindsor_Formula_Hybrid.Source.Interface"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d" Loaded="Page_Loaded">
+    <Page.Resources>
+        <Flyout x:Key="TestingControls"/>
+    </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,-42" RequestedTheme="Dark">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0,0,0,-42" RequestedTheme="Dark" FlyoutBase.AttachedFlyout="{StaticResource TestingControls}">
         <Viewbox Margin="0" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
             <Viewbox.RenderTransform>
                 <CompositeTransform ScaleX="0.8" ScaleY="0.8"/>
@@ -144,6 +147,7 @@
 
             </Grid>
         </Viewbox>
+        <MediaElement x:Name="StartupTone" HorizontalAlignment="Left" Height="100" Margin="-170,591,0,0" VerticalAlignment="Top" Width="100" ManipulationMode="TranslateInertia" AudioCategory="Alerts" Source="ms-appx:///Assets/StartupTone.wav"/>
 
     </Grid>
 

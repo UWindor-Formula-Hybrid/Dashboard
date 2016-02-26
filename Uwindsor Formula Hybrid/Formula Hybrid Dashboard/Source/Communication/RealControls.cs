@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Uwindsor_Formula_Hybrid.Source.Communication
@@ -13,24 +14,102 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
     /// </summary>
     class RealControls : InputInterface
     {
-        /// <summary>
-        /// The Labels to the CanbusData, Only really useful in debugging, configuration, and testing
-        /// </summary>
-        private string[] CanbusDataLabels = {"RPM","Throttle","Ignition"}; 
-        /// <summary>
-        /// This is where the data from the ecu is stored as it is received, <br/>
-        /// it is like this because the communication must be done on a loop in its own thread as to maintain proper timing.
-        /// </summary>
-        private int[] CanbusData;
+    
         //This is used to signal a application wide shutdown. 
         public bool isShuttingDown = false;
-        /// <summary>
-        /// This method initializes the class, starting the thread and returning.
-        /// </summary>
-        RealControls()
-        {
 
+        public float ThrottlePos
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
         }
+
+        public float CurrentSpeed
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public float FuelLeft
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public float BatteryLeft
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public int EngineRPM
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        float InputInterface.ThrottlePos
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        float InputInterface.CurrentSpeed
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        float InputInterface.FuelLeft
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        float InputInterface.BatteryLeft
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+
+            set
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         /// <summary>
         /// This thread is asynchronously run leaving it inside of its own thread.
         /// There is no clean shutdown as of yet.
@@ -42,24 +121,20 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
 
             }
         }
-        public void InitSerialCom(int bitRate)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void SetMotorOuput(float value)
-        {
-            throw new NotImplementedException();
-        }
-
+        /// <summary>
+        /// Marks the loop for shutdown and finishing anything needed to be shutdown before returning.
+        /// </summary>
         public void Shutdown()
         {
-            throw new NotImplementedException();
+            isShuttingDown = true;
         }
 
-        public int getSpeedSensor()
+        /// <summary>
+        /// This method initializes the class, starting the thread and returning.
+        /// </summary>
+        public void Initialize()
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

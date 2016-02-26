@@ -16,6 +16,9 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.ViewManagement;
+using Windows.System.Threading;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
 
 namespace Uwindsor_Formula_Hybrid
 {
@@ -91,9 +94,14 @@ namespace Uwindsor_Formula_Hybrid
         /// </summary>
         private void Startup()
         {
-            // Play the tone required at startup for compliance
+            //Request Full Screen Start
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.FullScreen;
+#if DEBUG
+            ApplicationView.PreferredLaunchWindowingMode = ApplicationViewWindowingMode.PreferredLaunchViewSize;
 
-            // 
+#endif
+
+
         }
        
     }
