@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using Uwindsor_Formula_Hybrid.Source.Communication;
+using Formula_Hybrid_Dashboard.Source.Controller;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -70,6 +71,7 @@ namespace Uwindsor_Formula_Hybrid.Source.Interface
             FuelE.StrokeDashArray = new DoubleCollection() { ((Communication.Communication.DefaultControls.FuelLeft + 0.0) / 100.0) * 25.75, 100 };
             BattE.StrokeDashArray = new DoubleCollection() { ((Communication.Communication.DefaultControls.BatteryLeft + 0.0) / 100.0) * 28.25, 100 };
             ((ProgressBar)FindChildControl<ProgressBar>(InfoCenter, "Ethrottle")).Value = Communication.Communication.DefaultControls.ThrottlePos;
+            ((ProgressBar)FindChildControl<ProgressBar>(InfoCenter, "Ethrottle")).Value = Controller.
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
