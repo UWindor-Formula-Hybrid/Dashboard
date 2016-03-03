@@ -144,7 +144,7 @@ namespace Uwindsor_Formula_Hybrid.Source.Interface
             DispatcherTimer dispatcherTimer;
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += UI_TimerTick;
-            dispatcherTimer.Interval = new TimeSpan(20);
+            dispatcherTimer.Interval = new TimeSpan(200000);//20ms or 50fps, 10000 ticks in a millisecond
             dispatcherTimer.Start();
         }
     }
