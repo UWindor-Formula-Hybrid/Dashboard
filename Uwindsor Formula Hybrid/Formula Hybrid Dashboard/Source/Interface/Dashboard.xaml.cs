@@ -59,18 +59,62 @@ namespace Uwindsor_Formula_Hybrid.Source.Interface
             return null;
         }
 
+        private int getRPM()
+        {
+            return Communication.Communication.DefaultControls.EngineRPM;
+        }
+
+        private float getSpeed()
+        {
+            return Communication.Communication.DefaultControls.CurrentSpeed;
+        }
+
+        private double getRPMStroke()
+        {
+            return ((getRPM() + 0.0) / 10000.0) * 13.5;
+        }
+
+        private double getSpeedStroke()
+        {
+            return ((getSpeed() + 0.0) / 160.0) * 22.9;
+        }
+
+        private float getFuelLeft()
+        {
+            return Communication.Communication.DefaultControls.FuelLeft;
+        }
+
+        private double getFuelLeftStroke()
+        {
+            return ((getFuelLeft() + 0.0) / 100.0) * 25.75;
+        }
+
+        private float getBatteryLeft()
+        {
+            return Communication.Communication.DefaultControls.BatteryLeft;
+        }
+
+        private double getBatteryLeftStroke()
+        {
+            return ((getBatteryLeft() + 0.0) / 100.0) * 28.25;
+        }
+        
+        private float getEngThrottlePos()
+        {
+            return Communication.Communication.DefaultControls.ThrottlePos;
+        }
         /// <summary>
         /// This is where the code runs that will update the UI, it runs repeatably
         /// </summary>
         public void UI_TimerTick(object sender, object e)
         {
-            RPMlabel.Text = "" + Communication.Communication.DefaultControls.EngineRPM + " RPM";
-            SpeedLabel.Text = "" + Communication.Communication.DefaultControls.CurrentSpeed + " Km/h";
-            RPM.StrokeDashArray = new DoubleCollection() { ((Communication.Communication.DefaultControls.EngineRPM + 0.0) / 10000.0) * 13.5 , 100};// RPM divded by RPM limit times max stroke length
-            Speed.StrokeDashArray = new DoubleCollection() { ((Communication.Communication.DefaultControls.CurrentSpeed + 0.0) / 160.0) * 22.9, 100 };
-            FuelE.StrokeDashArray = new DoubleCollection() { ((Communication.Communication.DefaultControls.FuelLeft + 0.0) / 100.0) * 25.75, 100 };
-            BattE.StrokeDashArray = new DoubleCollection() { ((Communication.Communication.DefaultControls.BatteryLeft + 0.0) / 100.0) * 28.25, 100 };
-            ((ProgressBar)FindChildControl<ProgressBar>(InfoCenter, "Ethrottle")).Value = Communication.Communication.DefaultControls.ThrottlePos;
+            RPMlabel.Text = "" + getRPM() + " RPM";
+            SpeedLabel.Text = "" + getSpeed() + " km/h";
+            RPM.StrokeDashArray = new DoubleCollection() { getRPMStroke() , 100};// RPM divded by RPM limit times max stroke length
+            Speed.StrokeDashArray = new DoubleCollection() { getSpeedStroke(), 100 };
+            FuelE.StrokeDashArray = new DoubleCollection() { getFuelLeftStroke(), 100 };
+            BattE.StrokeDashArray = new DoubleCollection() { getBatteryLeftStroke(), 100 };
+            ((ProgressBar)FindChildControl<ProgressBar>(InfoCenter, "Ethrottle")).Value = getEngThrottlePos();
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -100,7 +144,7 @@ namespace Uwindsor_Formula_Hybrid.Source.Interface
             DispatcherTimer dispatcherTimer;
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += UI_TimerTick;
-            dispatcherTimer.Interval = new TimeSpan(200000);//20ms or 50fps, 10000 ticks in a millisecond
+            dispatcherTimer.Interval = new TimeSpan(200000); //2ms or 500 times a second
             dispatcherTimer.Start();
         }
     }
