@@ -18,7 +18,7 @@ namespace Formula_Hybrid_Dashboard.Source.Controller
         private static int RPMHistoryLimit = 5000000 / LoopTicks; // half a second worth of history
         private static int RPMDiffThreshold = 100; // if it changes less than this in half a second we will stop accelerating
         private static int AccelerationLimit = 50; // how much can we accelerate in half a second(how many percent can the throttle increase)
-        private static int AccelerationStopDelay = (5000000 / LoopTicks) / 2; // wait a quarter of a second after beggining to accelerate to look at whether or not you should stop
+        private static int AccelerationStopDelay = (5000000 / LoopTicks); // wait a quarter of a second after beggining to accelerate to look at whether or not you should stop
 
         /// <summary>
         /// A difference of 5% total in the throttle will cause the momtor to kick in to aid in acceleration
@@ -102,19 +102,52 @@ namespace Formula_Hybrid_Dashboard.Source.Controller
                     if(RPMHist.Last() - RPMAverage > RPMDiffThreshold && WaitCount >= AccelerationStopDelay) //Should we be?
                     {
                         //Yes, we should be
-                        lock ("ControllerLock")
+                        if(WaitCount < AccelerationStopDelay * 4) // are we still ramping up the throttle
                         {
-                            
+                            lock ("ControllerLock")
+                            {
+                                throttle = Convert.ToInt32(((0.0 + WaitCount) / ((0.0 + AccelerationStopDelay) * 4)) * 255); //throttle so that we have full throttle at 2 seconds
+                            }
+                            WaitCount += 1;
                         }
+                        else 
+                        {
+                            // we arn't, so full power
+                            lock ("ControllerLock")
+                            {
+                                throttle = 255;
+                            }
+                        }
+                        
+
+
                     }
                     else if(WaitCount < AccelerationStopDelay) // are we still counting?
                     {
+                        lock ("ControllerLock")
+                        {
+                            throttle = Convert.ToInt32(((0.0 + WaitCount) / ((0.0 + AccelerationStopDelay) * 4)) * 255); //throttle so that we have full throttle at 2 seconds
+                        }
                         WaitCount += 1; // lets count
 
                     }
                     else 
                     {
-                        //We should not be accelerating
+                        //We need to throttle down.
+                        WaitCount = 0;
+                        lock ("ControllerLock")
+                        {
+                            throttle = 0;
+                        }
+                        isAccel = false; // we are done helping
+                    }
+                }
+                else
+                {
+                    //we are not accelerating, but should we be?
+                    if (ThrottleHist.Last() > (ThrottleAverage + (ThrottleAverage * (1.0 - ((double)PercentChangeForAccel) / 100)))) // is our throttle going up?
+                    {
+                        isAccel = true;
                     }
                 }
             }
