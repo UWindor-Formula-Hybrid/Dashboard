@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Windows.Devices.Enumeration;
+using Windows.Devices.SerialCommunication;
 
 namespace Uwindsor_Formula_Hybrid.Source.Communication
 {
@@ -22,6 +24,7 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
         {
             get
             {
+                
                 throw new NotImplementedException();
             }
         }
@@ -132,9 +135,12 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
         /// <summary>
         /// This method initializes the class, starting the thread and returning.
         /// </summary>
-        public void Initialize()
+        public async void Initialize()
         {
-            
+            var x = await DeviceInformation.FindAllAsync(SerialDevice.GetDeviceSelector());
+            DeviceInformation deviceraw = x.First();
+            SerialDevice device = await SerialDevice.FromIdAsync(deviceraw.Id);
+
         }
     }
 }
