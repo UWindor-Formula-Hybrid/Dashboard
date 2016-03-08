@@ -9,13 +9,18 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
 {
     class Communication
     {        
-
-#if DEBUG
-        public static InputInterface DefaultControls = new TestingControls();
-        public static bool isTesting = true;
-#else
-        public static InputInterface DefaultControls = new RealControls();
+        public static InputInterface DefaultControls = getControls();
         public static bool isTesting = false;
-#endif
+
+        /// <summary>
+        /// function to initialize the controls object.
+        /// </summary>
+        /// <returns>an initialized control object</returns>
+        static InputInterface getControls()
+        {
+            var x = new RealControls(); // make our controls
+            x.Initialize(); // initialize our controls
+            return x;
+        }
     }
 }

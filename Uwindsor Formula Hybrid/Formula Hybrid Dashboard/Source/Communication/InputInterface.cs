@@ -12,25 +12,20 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
     /// <seealso cref="App.xaml.cs"></summary>
     interface InputInterface
     {
-        //Pretty much all communication is locked and is just a variable, updated by the interface
-        float ThrottlePos { get; set; } // a Value from 0 - 100
-        float CurrentSpeed { get; set; }  // in KPH
-        float FuelLeft { get; set; }  // a Value from 0 - 100
-        float BatteryLeft { get; set; }  // a Value from 0 - 100
-        int EngineRPM { get; }
+        Decimal EngineRPM            { get; } // The number of RPM in the Engine, as provided by the ecu and relayed by the arduino
+        Decimal VehicleSpeed         { get; } // The current speed in KPH as calculated by the arduino.
+        Decimal Throttle_Engine      { get; } // The current engine throttle position, a value from 0 to 100.
+        Decimal Throttle_Motor       { get; } // the current motor throttle position, a value from 0 to 100.
+        Decimal FuelLevel            { get; } // The current fuel tank fill level, as a percentage of full.
+        Decimal MotorBatteryLevel    { get; } // The Current Motor battery charge level, as a percentage of full.
+        Decimal UtilBatteryVoltage   { get; } // The Current electronics battery charge level, as a voltage.
+        Decimal EngineCoolantTemp    { get; } // The Current engine coolant temperature, in degrees celcius.
+        Decimal EngineAirIntakeTemp  { get; } // The Current intake air temperature, in degrees celcius.
+        
+        void Initialize();  // used to start anything related to communication.
 
-        /// <summary>
-        /// Begin all theading and stores the mutex for use by any private methods
-        /// </summary>
-        /// <param name="mutex">Used for communication between threads and allows any thread to use communication without worrying about being threadsafe</param>
-        void Initialize();
 
-
-        /// <summary>
-        /// This method is used to signal an application wide shutdown. <br/>
-        /// It allows the thread to shudown gracefully.
-        /// </summary>
-        void Shutdown();
+        
         
         
 

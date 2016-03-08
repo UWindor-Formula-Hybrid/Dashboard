@@ -16,131 +16,121 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
     /// </summary>
     class RealControls : InputInterface
     {
-    
-        //This is used to signal a application wide shutdown. 
-        public bool isShuttingDown = false;
+        //Internal Versions Of Public Variables
+        private static decimal Internal_EngineAirIntakeTemp = 21;
+        private static decimal Internal_EngineCoolantTemp = 21;
+        private static decimal Internal_EngineRPM = 0;
+        private static decimal Internal_FuelLevel = 50;
+        private static decimal Internal_MotorBatteryLevel = 50;
+        private static decimal Internal_UtilBatteryVoltage = 0;
+        private static decimal Internal_Throttle_Engine = 0;
+        private static decimal Internal_Throttle_Motor = 0;
+        private static decimal Internal_VehicleSpeed = 0;
 
-        public float ThrottlePos
+
+
+        public decimal EngineAirIntakeTemp
         {
             get
             {
-                
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_EngineAirIntakeTemp;
+                }
             }
         }
 
-        public float CurrentSpeed
+        public decimal EngineCoolantTemp
         {
             get
             {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_EngineCoolantTemp;
+                }
             }
         }
 
-        public float FuelLeft
+        public decimal EngineRPM
         {
             get
             {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_EngineRPM;
+                }
             }
         }
 
-        public float BatteryLeft
+        public decimal FuelLevel
         {
             get
             {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_FuelLevel;
+                }
             }
         }
 
-        public int EngineRPM
+        public decimal MotorBatteryLevel
         {
             get
             {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_MotorBatteryLevel;
+                }
             }
         }
 
-        float InputInterface.ThrottlePos
+        public decimal Throttle_Engine
         {
             get
             {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_Throttle_Engine;
+                }
             }
         }
 
-        float InputInterface.CurrentSpeed
+        public decimal Throttle_Motor
         {
             get
             {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_Throttle_Motor;
+                }
             }
         }
 
-        float InputInterface.FuelLeft
+        public decimal UtilBatteryVoltage
         {
             get
             {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_UtilBatteryVoltage;
+                }
             }
         }
 
-        float InputInterface.BatteryLeft
+        public decimal VehicleSpeed
         {
             get
             {
-                throw new NotImplementedException();
-            }
-
-            set
-            {
-                throw new NotImplementedException();
+                lock ("ComLock")
+                {
+                    return Internal_VehicleSpeed;
+                }
             }
         }
-
-        /// <summary>
-        /// This thread is asynchronously run leaving it inside of its own thread.
-        /// There is no clean shutdown as of yet.
-        /// </summary>
-        private async void ControlLoop()
+        
+        public void Initialize()
         {
-            while (!isShuttingDown)
-            {
-
-            }
-        }
-        /// <summary>
-        /// Marks the loop for shutdown and finishing anything needed to be shutdown before returning.
-        /// </summary>
-        public void Shutdown()
-        {
-            isShuttingDown = true;
-        }
-
-        /// <summary>
-        /// This method initializes the class, starting the thread and returning.
-        /// </summary>
-        public async void Initialize()
-        {
-            var x = await DeviceInformation.FindAllAsync(SerialDevice.GetDeviceSelector());
-            DeviceInformation deviceraw = x.First();
-            SerialDevice device = await SerialDevice.FromIdAsync(deviceraw.Id);
-
+            
         }
     }
 }

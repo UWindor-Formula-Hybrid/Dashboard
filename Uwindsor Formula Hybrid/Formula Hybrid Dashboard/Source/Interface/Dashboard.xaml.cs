@@ -17,7 +17,6 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 using Uwindsor_Formula_Hybrid.Source.Communication;
-using Formula_Hybrid_Dashboard.Source.Controller;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -139,12 +138,12 @@ namespace Uwindsor_Formula_Hybrid.Source.Interface
               newAppView.Id,
               ViewSizePreference.UseHalf,
               mainViewId,
-              ViewSizePreference.UseHalf);
+              ViewSizePreference.UseMore);
 #endif
             DispatcherTimer dispatcherTimer;
             dispatcherTimer = new DispatcherTimer();
             dispatcherTimer.Tick += UI_TimerTick;
-            dispatcherTimer.Interval = new TimeSpan(200000); //2ms or 500 times a second
+            dispatcherTimer.Interval = new TimeSpan(4000000); //40ms or 25 times a second
             dispatcherTimer.Start();
         }
     }
