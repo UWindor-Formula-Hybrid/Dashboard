@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using Windows.Devices.Enumeration;
 using Windows.Devices.SerialCommunication;
+using Windows.Storage.Streams;
 
 namespace Uwindsor_Formula_Hybrid.Source.Communication
 {
@@ -16,6 +19,11 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
     /// </summary>
     class RealControls : InputInterface
     {
+
+        //SerialDevices for reading data
+        private static SerialDevice CANSerial;
+        private static SerialDevice USBSerial;
+
         //Internal Versions Of Public Variables
         private static decimal Internal_EngineAirIntakeTemp = 21;
         private static decimal Internal_EngineCoolantTemp = 21;
@@ -127,9 +135,62 @@ namespace Uwindsor_Formula_Hybrid.Source.Communication
                 }
             }
         }
-        
-        public void Initialize()
+
+        private async void USBSerialListen(SerialDevice serialPort)
         {
+            var reader = new StreamReader(serialPort.InputStream.AsStreamForRead());
+            while (true)
+            {
+                String line = "";
+                try
+                {
+                    line = reader.ReadLine();
+                    string[] split = Regex.Split(line, @"(?<!\\),");
+                    
+                    if (split.First() == "DB" && split.Count() == 10)
+                    {
+                        lock ("ComLock")
+                        {
+                            Internal_EngineRPM = Decimal.Parse(split[1]);
+                        }
+                    }
+                }
+                catch
+                {
+                    // :(
+                }
+
+                
+            }
+        }
+        public async void Initialize()
+        {
+            CANSerial = await SerialDevice.FromIdAsync(@"\\?\FTDIBUS#VID_0403+PID_6001+AI028SHYA#0000#{86e0d1e0-8089-11d0-9ce4-08003e301f73}");
+            USBSerial = await SerialDevice.FromIdAsync(@"\\?\USB#VID_2341&PID_0010#7543134323435160E0C2#{86e0d1e0-8089-11d0-9ce4-08003e301f73}");
+
+            //Configure CANSerial
+            CANSerial.WriteTimeout = TimeSpan.FromMilliseconds(1000);
+            CANSerial.ReadTimeout = TimeSpan.FromMilliseconds(1000);
+            CANSerial.BaudRate = 57600;
+            CANSerial.Parity = SerialParity.None;
+            CANSerial.StopBits = SerialStopBitCount.One;
+            CANSerial.DataBits = 8;
+
+            //Configure USBSerial
+            USBSerial.WriteTimeout = TimeSpan.FromMilliseconds(1000);
+            USBSerial.ReadTimeout = TimeSpan.FromMilliseconds(1000);
+            USBSerial.BaudRate = 115200;
+            USBSerial.Parity = SerialParity.None;
+            USBSerial.StopBits = SerialStopBitCount.One;
+            USBSerial.DataBits = 8;
+
+            //Announce that we are ready to receive on USB
+            var Writer = new DataWriter(USBSerial.OutputStream);
+            Writer.WriteString("OK");
+            Task<UInt32> StoreTask = Writer.StoreAsync().AsTask();
+            Writer.DetachStream();
+            Writer = null;
+
             
         }
     }
